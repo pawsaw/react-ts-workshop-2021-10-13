@@ -7,7 +7,7 @@ function App() {
     <div className="App">
       <h1>Hello Workshop</h1>
       <SimpleName />
-      <Counter />
+      <Counter initialValue={50} />
     </div>
   );
 }
