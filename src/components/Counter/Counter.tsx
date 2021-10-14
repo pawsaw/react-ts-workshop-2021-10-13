@@ -8,9 +8,15 @@ export interface OnCounterValueChanged {
 export interface CounterProps {
   value?: number;
   onValueChanged?: OnCounterValueChanged;
+  children?: string;
 }
 
-export const Counter: React.FC<CounterProps> = ({ value = 50, onValueChanged = noop}) => {
+export const Counter: React.FC<CounterProps> = (
+{ 
+  value = 50, 
+  onValueChanged = noop, 
+  children: label = 'Counter'
+}) => {
 
   const [count, setCount] = useState<number>(value);
 
@@ -30,7 +36,7 @@ export const Counter: React.FC<CounterProps> = ({ value = 50, onValueChanged = n
     <button onClick={decrement}>
       -
     </button>
-    <span>{count}</span>
+    <span>{label}: {count}</span>
     <button onClick={increment}>
       +
     </button>
