@@ -1,20 +1,30 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
+import { noop } from '../../util/noop';
 
-export interface CounterProps {
-  initialValue?: number;
+export interface OnCounterValueChanged {
+  (value: number): void;
 }
 
-export const Counter: React.FC<CounterProps> = ({ initialValue = 100 }) => {
+export interface CounterProps {
+  value?: number;
+  onValueChanged?: OnCounterValueChanged;
+}
 
-  const [count, setCount] = useState<number>(initialValue);
+export const Counter: React.FC<CounterProps> = ({ value = 50, onValueChanged = noop}) => {
 
-  const increment = useCallback(() => {
-    setCount(prevCount => prevCount + 1);
-  }, []);
+  const [count, setCount] = useState<number>(value);
 
-  const decrement = useCallback(() => {
-    setCount(prevCount => prevCount - 1);
-  }, []);
+  const increment = () => {
+    const newValue = count + 1;
+    setCount(newValue);
+    onValueChanged(newValue);
+  };
+
+  const decrement = () => {
+    const newValue = count - 1;
+    setCount(newValue);
+    onValueChanged(newValue);
+  };
 
   return <div>
     <button onClick={decrement}>
