@@ -1,11 +1,8 @@
-import { useState } from 'react';
 import { Link, Route, Switch, Redirect } from 'react-router-dom';
 import './App.css';
-import { BookDetail } from './screens/BooksScreen/BookDetail';
-import { BookList, OnBookSelected } from './screens/BooksScreen/BookList';
-import { Book, useBook, useBooks } from './domain/books';
 import { BooksScreen } from './screens/BooksScreen';
 import { PlaygroundScreen } from './screens/PlaygroundScreen';
+import { BookDetailsScreen } from './screens/BookDetailsScreen';
 
 
 function App() {
@@ -23,6 +20,9 @@ return (
           <Redirect exact path="/" to="/books" />
           <Route path="/playground">
             <PlaygroundScreen />
+          </Route>
+          <Route path="/books/:isbn">
+            <BookDetailsScreen />
           </Route>
           <Route path="/books">
             <BooksScreen />
