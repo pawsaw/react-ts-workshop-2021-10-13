@@ -1,34 +1,35 @@
 import { useState } from 'react';
+import { Link, Route, Switch, Redirect } from 'react-router-dom';
 import './App.css';
-import { BookDetail } from './components/BookDetail';
-import { BookList, OnBookSelected } from './components/BookList';
+import { BookDetail } from './screens/BooksScreen/BookDetail';
+import { BookList, OnBookSelected } from './screens/BooksScreen/BookList';
 import { Book, useBook, useBooks } from './domain/books';
+import { BooksScreen } from './screens/BooksScreen';
+import { PlaygroundScreen } from './screens/PlaygroundScreen';
 
 
 function App() {
 
-  const books: Book[] | null = useBooks();
-  // const book: Book | null = useBook('978-0-20163-361-0');
-  const [selectedBook, setSelectedBook] = useState<Book | null>(null);
-
-  const onBookSelected: OnBookSelected = (book) => setSelectedBook(book);
-
-  return (
-    <div className="App">
+  
+return (
+    <>
       <h1>Book Manager</h1>
-      {
-        books ? (
-          <BookList books={books} onBookSelected={onBookSelected} />
-        ) : (
-          <span>Loading books...</span>
-        )
-      }
-      {
-        selectedBook && (
-          <BookDetail book={selectedBook} />
-        )
-      }
-    </div>
+      <ul>
+        <li><Link to="/playground">Playground</Link></li>
+        <li><Link to="/books">Books</Link></li>
+      </ul>
+      <div>
+        <Switch>
+          <Redirect exact path="/" to="/books" />
+          <Route path="/playground">
+            <PlaygroundScreen />
+          </Route>
+          <Route path="/books">
+            <BooksScreen />
+          </Route>
+        </Switch>
+      </div>
+    </>
   );
 }
 

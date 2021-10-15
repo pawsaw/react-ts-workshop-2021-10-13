@@ -1,6 +1,6 @@
 import React from 'react';
 import { OnBookSelected } from '..';
-import { Book } from '../../../domain/books/Book';
+import { Book } from '../../../../domain/books/Book';
 
 export interface BookListItemProps {
   book: Book;

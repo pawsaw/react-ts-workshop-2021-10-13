@@ -1,7 +1,7 @@
 import React from 'react';
 import { OnBookSelected } from '.';
-import { Book } from '../../domain/books/Book';
-import { noop } from '../../util/noop';
+import { Book } from '../../../domain/books/Book';
+import { noop } from '../../../util/noop';
 import { BookListItem } from './BookListItem';
 
 export interface BookListProps {

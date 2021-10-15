@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { noop } from '../../util/noop';
+import React from 'react';
 import { useCounter } from './CounterContext';
 
 
