@@ -1,5 +1,6 @@
 import React  from 'react';
+import { SimpleForm } from '../../components/SimpleForm';
 
 export const PlaygroundScreen: React.FC = () => {
-  return <div>PlaygroundScreen works!</div>
+  return <SimpleForm onSubmit={data => console.log(data)} />
 }
